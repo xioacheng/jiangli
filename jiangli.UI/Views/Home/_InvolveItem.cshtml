@@ -1,0 +1,64 @@
+﻿@using jiangli.ViewModels.WebSite;
+@model IEnumerable<InvolveViewModel>
+
+@foreach (var item in @Model)
+{
+    <div class="jl-involve-item">
+        <div class="mod-head">
+            <a class="anchor"></a>
+            <!-- 用户头像 -->
+            <a class="jl-user-img" href="#">
+                <img src="@item.user.avatar_url" />
+            </a>
+            <div class="title">
+                <p>
+                    <a class="jl-user-name" href="#">@item.user.nickname</a>
+                    -
+                    <span class="text-color-999"> 权重：@item.user.weight</span>
+                </p>
+            </div>
+            <h2></h2>
+        </div>
+        <div class="mod-body clearfix">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-body">
+                    <p>@item.assignmentExplain</p>
+                </div>
+
+                <!-- Table -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr> 
+                            <th>最满意的赔偿金额</th>
+                            <th>如果不赔偿的满意度</th>
+                            <th>如果赔偿金额是 @item.mostSatisfied*2的</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr> 
+                            <th style="font:bold;">￥ @item.mostSatisfied</th>
+                            <th style="font:bold;">@item.nonSatisfied</th>
+                            <th style="font:bold;">@item.doublePay</th>
+                        </tr>
+                    </tbody>
+                    <tr></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="mod-footer">
+            <div class="meta clearfix">
+                <span class="text-color-999 pull-right">
+                    @item.ParticipateDate
+                </span>
+                <!-- 显示曲线 -->
+                <span class="operate">
+                    <a class="jl-show-chart">
+                        曲线
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+}

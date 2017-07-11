@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/permitJS.js"></script>
+<div id="page-wrapper">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li><a><i class="fa fa-dashboard"></i> 用户</a></li>
+            <li class="active"><i class="fa fa-bar-chart-o"></i> 权限管理</li>
+        </ol>
+    </div>
+    <h2>PermitManager</h2>
+    <div class="col-lg-6">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>权限名称</th>
+                    <th>Controller</th>
+                    <th>Action</th>
+                    <th>URL</th>
+                    <th>创建权限的用户</th>
+                    <th>创建权限日期</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewData["permit"] as List<jiangli.Models.Permit>)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.PermitName</td>
+                        <td>@item.Controller</td>
+                        <td>@item.Action</td>
+                        <td>@item.URL</td>
+                        <td>@item.CreateByName</td>
+                        <td>@item.CreateOn</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#UserManager").addClass("open");
+        $("#permit").addClass("active");
+    })
+</script>
+

@@ -1,0 +1,37 @@
+﻿@using jiangli.UI.Models.WebSite
+@model IEnumerable<CommentViewModel>
+@if (@Model.Count() == 0)
+{
+    <div class="jl-padding10" alige="center">暂无评论</div>
+}
+else
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a class="jl-user-name" href="#">
+                    <img src="@item.avatar_url" />
+                </a>
+                <div>
+                    <p class="clearfix">
+                        <span class="pull-right" style="display:none;">
+                            <a href="javascript:;" onclick="return false;">
+                                回复
+                            </a>
+                        </span>
+                        <a href="#" class="jl-user-name author">
+                            @item.username
+                        </a>
+                        •
+                        <span>@item.created_at</span>
+                    </p>
+                    <p>
+                        @item.content
+                    </p>
+
+                </div>
+            </li>
+        }
+    </ul>
+}

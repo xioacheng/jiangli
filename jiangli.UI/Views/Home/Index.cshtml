@@ -1,0 +1,57 @@
+﻿@using jiangli.UI.Models.WebSite;
+@model IEnumerable<CasebriefViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+<h2></h2>
+<div class="row">
+    <div class="jl-content-wrap clearfix">
+
+        <div class="col-md-9 col-sm-12 jl-main-content">
+            <div class="nav nav-tabs jl-nav-tabs active hidden-sm">
+                <h1 class="hidden-sm">
+                    <i class="fa fa-chevron-right fa-sm"></i>
+                    <small>案件列表</small>
+                </h1>
+            </div>
+            <div class="jl-explore-list">
+
+                @try
+                {
+                    foreach (CasebriefViewModel item in Model)
+                    {
+                    <!-- 每个案件的列表 -->
+                        { Html.RenderPartial("_MainCaseItem", item); }
+                        @*<hr />*@
+                    }
+                }
+                catch (Exception)
+                {
+                    <h2>数据错误</h2>
+                }
+                
+            </div>
+        </div>
+        <!-- 侧边栏 -->
+        <div class="col-md-3 col-sm-12 jl-side-bar hidden-sm hidden-xs">
+            <div class="jl-mod jl-text-align-justify">
+                <div class="mod-head">
+                    <a href="#" class="pull-right">更多></a>
+                    <h3><small>热门话题</small></h3>
+                </div>
+                <div class="mod-body">
+
+                </div>
+            </div>
+            <div class="jl-mod jl-text-align-justify">
+                <div class="mod-head">
+                    <a href="#" class="pull-right">更多></a>
+                    <h3><small>热门用户</small></h3>
+                </div>
+                <div class="mod-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

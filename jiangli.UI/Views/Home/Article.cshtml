@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "Article";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@using jiangli.UI.Models.WebSite
+@model jiangli.UI.Models.WebSite.DetailCaseViewModel
+
+@section scripts{
+    <script>
+        /*
+         * 评论区域的显示和隐藏
+         */
+        function onclickCommentText() {
+            $(".jl-comment-box").toggle(500);
+        }
+    </script>
+} 
+<div class="jl-container-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="jl-content-wrap clearfix">
+                <div class="col-sm-12 col-md-9 jl-main-content"> 
+                    <!-- 标题 -->
+                    <div class="jl-mod jl-case-detail jl-item">
+                        <!-- 标题-->
+                        <div class="mod-head">
+                            <h1>@Model.title</h1>
+                            <div class="operate clearfix">
+                                <a href="javascript:;" onclick="AWS.User.follow($(this), 'question', 31668);" class="follow btn btn-normal btn-success pull-left "><span>关注</span> <em>|</em> <b>8</b></a>
+                                <!-- 下拉菜单 -->
+                                <div class="btn-group pull-left" style="display:none;">
+                                    <a class="btn btn-gray dropdown-toggle" data-toggle="dropdown" href="javascript:;">...</a>
+                                    <div class="aw-dropdown pull-right" role="menu" aria-labelledby="dropdownMenu">
+                                        <ul class="aw-dropdown-list">
+                                            <li>
+                                                <a href="http://wenda.wecenter.com/question/31668?column=log&rf=false" rel="nofollow">修改记录</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- end 下拉菜单 -->
+                            </div>
+                        </div>
+                        <!-- end 标题 -->
+                        <!-- mod-body -->
+                        <div class="mod-body">
+                            <div class="content markitup-box">
+                                @Model.description
+                            </div>
+                            <div class="jl-mod jl-casedetail-related list">
+                            </div>
+                        </div>
+                        <!-- end mod-body -->
+                        <div class="mod-footer">
+                            <div class="meta">
+                                <span class="text-color-999">@Model.start_at</span>
+                                <a class="jl-add-comment text-color-999 active" href="javascript:;" onclick="onclickCommentText();">@Model.commentsStr</a>
+                            </div>
+                            <!-- 评论box -->
+                            <div class="jl-comment-box">
+                                <div class="jl-comment-list">
+                                    @{Html.RenderPartial("_Comment", @Model.comments);}
+                                </div>
+                                <form action="#" method="post" onsubmit="return false">
+                                    <div class="jl-comment-box-main">
+                                        <textarea class="jl-comment-txt form-control" placeholder="评论一下..." name="message" id="" rows="2"></textarea>
+                                    </div>
+                                    <div class="jl-comment-box-btn">
+                                        <span class="pull-right">
+                                            <a href="javascript:;" onclick="" class="btn btn-mini btn-success">评论</a>
+                                            <a href="javascript:;" class="btn btn-mini btn-gray close-comment-box">取消</a>
+
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- en mod-footer -->
+
+                    </div>
+                    <!--end 标题-->
+                    <!-- 裁决相关 -->
+                    <div class="jl-mod jl-case-involve">
+                        <div class="mod-head">
+                            <ol class="nav nav-tabs jl-nav-tabs active">
+                                <li class="active"><a href="#">时间</a></li>
+                                <h2 class="hidden-xs">
+                                    @*@Model.numberOfJoin 个裁决*@
+                                    0个裁决
+                                </h2>
+                            </ol>
+                        </div>
+                        <div class="mod-body jl-involve-list">
+                            @*@try
+                                {
+                                    { Html.RenderPartial("_InvolveItem", @Model.involves); }
+                                }
+                                catch (Exception)
+                                {
+
+                                }*@
+
+                        </div>
+                        <div class="mod-footer">
+
+                        </div>
+                    </div>
+                    <!-- end 裁决相关-->
+                </div>
+                <!-- end 案件主要内容 -->
+                <!-- 侧边栏 -->
+                <div class="col-md-3 jl-side-bar hidden-xs">
+                    <!-- 发起人 -->
+                    <div class="jl-mod">
+                        <div class="mod-head">
+                            <h3>投诉人</h3>
+                        </div>
+                        <div class="mod-body">
+                            <dl>
+                                <dt class="pull-left jl-border-radius-5">
+                                    <a href="#">
+                                        <img src="@Model.accusor.avatar_url" />
+                                    </a>
+                                </dt>
+                                <dd class="pull-left">
+                                    <a class="jl-user-name" href="#">@Model.accusor.nickname</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <!-- 应诉人 -->
+                    <div class="jl-mod">
+                        <div class="mod-head">
+                            <h3>应诉人</h3>
+                        </div>
+                        <div class="mod-body">
+                            <dl>
+                                <dt class="pull-left jl-border-radius-5">
+                                    <a href="#">
+                                        <img src="@Model.respondent.avatar_url" />
+                                    </a>
+                                </dt>
+                                <dd class="pull-left">
+                                    <a class="jl-user-name" href="#">@Model.respondent.nickname</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <!-- end 侧边栏 -->
+            </div>
+        </div>
+    </div>
+</div>

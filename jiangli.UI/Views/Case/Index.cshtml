@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@using jiangli.Models.Constants
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/CaseInfo.js"></script>
+<div id="page-wrapper">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li><a><i class="fa fa-dashboard"></i> 案件</a></li>
+        </ol>
+    </div>
+    @using (Html.BeginForm("Search","Case",FormMethod.Post,new { @class = "form-inline" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-4"><h2>Case Table</h2></div>
+        <div class="col-md-4"><input type="text" class="form-control pull-right" id="word" name="word"/></div>
+        <div class="col-md-4"><input type="submit" class="btn btn-primary pull-left" value="检索"/></div>
+    }
+    <table class="table table-bordered table-hover table-striped" id="caseTable">
+        <thead>
+            <tr>
+                <th>案件ID</th>
+                <th>标题</th>
+                <th>发布人</th>
+                <th>投诉人</th>
+                <th>应诉人</th>
+                <th>赔偿方式</th>
+                <th>提交日期</th>
+                <th>发布日期</th>
+                <th>截止日期</th>
+                <th>案件状态</th>
+                <th>修改案件状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var temp in ViewData["cases"] as List<jiangli.Models.Case>)
+            {
+                <tr>
+                    <td>@temp.CaseID</td>
+                    <td>@temp.Title</td>
+                    <td>@temp.Publisher</td>
+                    <td>@temp.Complainant</td>  
+                    <td>@temp.Respondent</td>
+                    <td>@temp.ModeOfPay</td>
+                    <td>@temp.CaseOfSubmit</td>
+                    <td>@temp.DateOfBegin</td>
+                    <td>@temp.DateOfEnd</td>
+                    @switch (temp.StateOfCase)
+                    {
+                        case CaseState.DRAFT:<td style="color:black">草稿</td>; break;
+                        case CaseState.PENDING:<td style="color:deepskyblue">审核</td>; break;
+                        case CaseState.PUBLISH:<td style="color:palevioletred">发布</td>; break;
+                        case CaseState.FINISH:<td style="color:#b52d2d">完成</td>; break;
+                        case CaseState.COMPLAIN:<td style="color:#ff0000">申诉</td>; break;
+                        default:<td>案件状态</td>;break;
+                    }
+                    <td>
+                        <button class="btn btn-primary" onclick="Detail(@temp.CaseID,'@temp.Title')">查看详细内容</button>
+                        <button class="btn btn-primary" onclick="Message(@temp.CaseID.)">修改案件状态</button>
+                    </td>
+                    <td> <button class="btn btn-default" onclick="Delete(@temp.CaseID)">删除</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li class="disabled"><a href="#">&laquo;</a></li>
+        @for (var i = 1; i <= int.Parse(ViewData["total"].ToString()) / 10 + 1; i++)
+        {
+            if (ViewData["page"].ToString() == i.ToString())
+            {
+                <li class="active">@Html.ActionLink(i.ToString(), "Index", "Case", new { page = i }, null)</li>
+            }
+            else
+            {
+                <li>@Html.ActionLink(i.ToString(), "Index", "Case", new { page = i }, null)</li>
+            }
+        }
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+@Html.Partial("ModifyCaseState")
+@Html.Partial("Detail")
+
+

@@ -1,0 +1,96 @@
+﻿@using jiangli.UI.Models.test
+@model Register
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/form-elements.css" />
+    <link rel="stylesheet" href="~/Content/style.css" />
+</head>
+<body style="background:url(../../img/background/1.jpg)">
+    <div class="top-content">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="col-md-offset-1">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1><strong>讲理</strong> Register </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7 col-sm-offset-3 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <p>
+                                    分享你的故事!我有故事，你有酒吗?<br />
+                                    下载app<a href="http://azmind.com"><strong style="color:#109af6;">讲理</strong></a>,喜欢他，就嫁给他!
+                                </p>
+                            </div>
+                            <div class="form-top-right">
+                                <a class="fa fa-home" href="#"></a>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            @using (Html.BeginForm("RegisterCheck", "LogIn", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "aaa@aaa.com" })
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @clss = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Password1, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.PasswordFor(m => m.Password1, new { @class = "form-control" , @placeholder = "password" })
+                                        @Html.ValidationMessageFor(m => m.Password1, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Password2, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.PasswordFor(m => m.Password2, new { @class = "form-control", @placeholder = "确认密码" })
+                                        @Html.ValidationMessageFor(m => m.Password2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-offset-2">
+                                    <button type="submit" class="btn">注册</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-offset-1">
+                    <h3 style="color:white">使用以下方式免注册登录:</h3>
+                    <div class="social-login-buttons">
+                        <a class="btn btn-link-2" href="#">
+                            <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                        <a class="btn btn-link-2" href="#">
+                            <i class="fa fa-twitter"></i> Twitter
+                        </a>
+                        <a class="btn btn-link-2" href="#">
+                            <i class="fa fa-google-plus"></i> Google Plus
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.backstretch.min.js"></script>
+    <script src="~/Scripts/scripts.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

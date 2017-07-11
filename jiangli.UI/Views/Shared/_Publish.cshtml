@@ -1,0 +1,44 @@
+﻿
+
+<div id="mymodal" class="modal fade alert-box" tabindex="-1" aria-labelledby="mySmallModalLabel" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a type="button" class="close icon icon-delete" data-dismiss="modal" aria-hidden="true"></a>
+                <h3 class="modal-title" id="myModalLabel">发起案件</h3>
+            </div>
+            <div class="modal-body">
+                <!-- 显示出错信息 -->
+                <div class="alert alert-danger collapse error_message"></div>
+                <!--表单信息-->
+                <form action="#" method="post" id="quick_publish" onsubmit="false">
+                    <!-- 标题 -->
+                    <div>
+                        <textarea class="form-control" placeholder="写下你的标题" id="quick-publish-question-content" name="case-content" onkeydown="if(event.keyCode == 13){return false ;}"
+                                  rows="1"></textarea>
+                    </div>
+                    <!-- 应诉人选择 -->
+                    <div class="form-group input-group">
+                        <input type="text" class="form-control" placeholder="搜索应诉人">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                    <!-- 详细描述 -->
+                    <textarea class="form-control" name="case-detail" placeholder="案件背景等描述" rows="4"></textarea>
+                </form>
+                <!-- 图片预览 -->
+                <div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-right">
+                    <a data-dismiss="modal" aria-hidden="true" class="text-color-999">取消</a>
+                    <button class="btn btn-large btn-success">发布</button>
+                </span>
+                <!-- 选择图片 -->
+                <a href="#" class="pull-left" tabindex="-1">添加照片</a>
+            </div>
+        </div>
+    </div>
+</div>

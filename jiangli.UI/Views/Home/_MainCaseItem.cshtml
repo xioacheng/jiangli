@@ -1,0 +1,50 @@
+﻿@using jiangli.UI.Models.WebSite
+@model CasebriefViewModel
+@{
+    ViewBag.Title = "首页-项目";
+}
+
+@*<link href="~/Content/custom/custom.css" rel="stylesheet" />*@
+
+<div class="jl-main-item">
+    <div class="jl-mi-inner">
+        <!-- 头像 -->
+        <div class="jl-mi-avatar">
+            <a href="#" class="jl-item-link">
+                <img class="side-user-avatar" src="@Model.basicAccusor.avatar_url" alt="@Model.basicAccusor.nickname" />
+            </a>
+        </div>
+        <div class="jl-mi-case">
+            <!-- 数据来源 -->
+            <div class="case-source">
+                ddd
+            </div>
+            <div class="case-real">
+                <h2 class="case-title">@Html.ActionLink(@Model.basicCase.title, "Article", new { cid = @Model.basicCase.id })</h2>
+
+                <div class="case-body">
+                    <!-- 评论/裁决的作者的个人信息 -->
+                    <!--
+                    <div class="cb-answer-author-info">
+                        <span class="cb-summery-wrap">
+
+                        </span>
+                    </div>
+                     -->
+                    <div class="case-text">
+                        @Model.basicCase.description
+                    </div>
+                </div>
+                <!-- 尾部 -->
+                <div class="case-foot">
+                    <div class="case-foot-panel">
+                        <div class="case-foot-text">
+                            @Model.basicCase.numberOfComment 评论 • @Model.basicCase.numberOfJoin 裁决 • 123 浏览
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
